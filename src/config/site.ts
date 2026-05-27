@@ -1,0 +1,26 @@
+export const siteConfig = {
+  name: "TuiBeiTu",
+  nameZh: "推背图",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://tuibeitu.com",
+  description:
+    "Ancient Chinese metaphysics meets AI. Discover your destiny through the wisdom of the East.",
+  keywords: [
+    "fortune telling",
+    "bazi calculator",
+    "chinese astrology",
+    "iching",
+    "i ching",
+    "destiny analysis",
+    "qi men dun jia",
+    "zi wei dou shu",
+    "four pillars of destiny",
+    "chinese zodiac",
+    "feng shui",
+    "numerology",
+    "tarot",
+    "divination",
+  ],
+  author: "TuiBeiTu",
+  locale: "en",
+  locales: ["en", "zh", "ja"] as const,
+} as const;

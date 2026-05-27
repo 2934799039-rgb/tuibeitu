@@ -1,0 +1,296 @@
+{
+  "site": {
+    "title": "推背图",
+    "subtitle": "观天道，测人运，演万象。",
+    "description": "东方玄学的数字传承。八字、易经，古法今用。"
+  },
+  "nav": {
+    "home": "首页",
+    "history": "历史记录",
+    "pricing": "古币充值",
+    "about": "关于",
+    "signin": "登录",
+    "signup": "注册",
+    "signout": "退出",
+    "account": "账户",
+    "subscription": "订阅",
+    "changeAvatar": "更换头像"
+  },
+  "hero": {
+    "title": "推背图",
+    "subtitle": "观天道，测人运，演万象。",
+    "cta_primary": "开始推演",
+    "cta_secondary": "查看流派"
+  },
+  "schools": {
+    "title": "命理流派",
+    "description": "择一术数，洞悉天机。",
+    "bazi": {
+      "name": "生辰八字",
+      "description": "四柱命理"
+    },
+    "ziwei": {
+      "name": "紫微斗数",
+      "description": "帝王之术"
+    },
+    "liuyao": {
+      "name": "六爻占卜",
+      "description": "掷钱成卦"
+    },
+    "meihua": {
+      "name": "梅花易数",
+      "description": "观物取象"
+    },
+    "qimen": {
+      "name": "奇门遁甲",
+      "description": "帝王绝学"
+    },
+    "zhouyi": {
+      "name": "周易卦象",
+      "description": "群经之首"
+    },
+    "tarot": {
+      "name": "塔罗占卜",
+      "description": "七十八张牌"
+    },
+    "name": {
+      "name": "姓名命理",
+      "description": "姓名藏玄机"
+    },
+    "phone": {
+      "name": "手机号命理",
+      "description": "数字亦有灵"
+    },
+    "daily": {
+      "name": "每日运势",
+      "description": "以天时推人事"
+    },
+    "yearly": {
+      "name": "流年分析",
+      "description": "太岁当值"
+    },
+    "romance": {
+      "name": "姻缘分析",
+      "description": "八字合婚"
+    },
+    "wealth": {
+      "name": "财运分析",
+      "description": "八字财星为纲"
+    },
+    "career": {
+      "name": "事业分析",
+      "description": "五行属性"
+    },
+    "enterBazi": "进入八字",
+    "enterDivination": "开始占卜"
+  },
+  "common": {
+    "loading": "加载中...",
+    "error": "出了一点问题",
+    "retry": "重试",
+    "back": "返回",
+    "freeReading": "免费",
+    "premium": "高级",
+    "language": "语言",
+    "returnHome": "返回首页",
+    "cosmicError": "天地之气暂时失和。",
+    "pageVoid": "此页已归于虚空。"
+  },
+  "form": {
+    "year": "年",
+    "month": "月",
+    "day": "日",
+    "yourQuestion": "你的问题",
+    "questionPlaceholder": "你想问卜什么？",
+    "fullName": "姓名",
+    "namePlaceholder": "请输入你的姓名",
+    "phoneNumber": "手机号",
+    "phonePlaceholder": "+86 13800000000",
+    "noInputNeeded": "无需额外输入，直接生成运势。",
+    "enterQuestion": "请输入你的问题",
+    "enterName": "请输入你的姓名",
+    "enterPhone": "请输入你的手机号",
+    "createFailed": "创建推演失败",
+    "networkError": "网络错误，请重试。"
+  },
+  "auth": {
+    "signinTitle": "登录推背图",
+    "signupTitle": "创建账户",
+    "email": "邮箱",
+    "password": "密码",
+    "name": "姓名",
+    "signinButton": "登录",
+    "signupButton": "创建账户",
+    "googleSignIn": "使用 Google 登录",
+    "noAccount": "还没有账户？",
+    "haveAccount": "已有账户？",
+    "signupLink": "注册",
+    "signinLink": "登录",
+    "orContinue": "或",
+    "invalidCredentials": "邮箱或密码错误",
+    "registrationFailed": "注册失败",
+    "signinAfterSignupFailed": "账户已创建但登录失败，请手动登录。",
+    "genericError": "出了点问题，请重试。",
+    "emailRegistered": "该邮箱已被注册",
+    "sendLink": "发送链接",
+    "emailHint": "我们将发送一个魔法链接到你的邮箱，点击即可登录"
+  },
+  "generating": {
+    "title": "正在推演天机...",
+    "failed": "推演失败",
+    "noReadingId": "未指定推演，请从表单开始。",
+    "messages": [
+      "感应天地之气...",
+      "排定四柱八字...",
+      "推算天干地支...",
+      "取格定局...",
+      "十神定位...",
+      "命盘显现中..."
+    ],
+    "lineTop": "上",
+    "lineFirst": "初",
+    "baziStep0": "展开命卷...",
+    "baziStep1": "定年柱...",
+    "baziStep2": "定月柱...",
+    "baziStep3": "定日柱...",
+    "baziStep4": "定时柱...",
+    "baziStep5": "命盘显现",
+    "zhouyiStep0": "初爻已定",
+    "zhouyiStep1": "二爻显现",
+    "zhouyiStep2": "三爻成形",
+    "zhouyiStep3": "四爻落位",
+    "zhouyiStep4": "五爻归位",
+    "zhouyiStep5": "上爻圆满",
+    "zhouyiStep6": "卦象已成",
+    "pillarYear": "年柱",
+    "pillarMonth": "月柱",
+    "pillarDay": "日柱",
+    "pillarHour": "时柱"
+  },
+  "bazi": {
+    "title": "生辰八字",
+    "description": "输入你的出生信息。",
+    "gender": "性别",
+    "male": "男",
+    "female": "女",
+    "birthDate": "出生日期",
+    "birthTime": "出生时间",
+    "birthPlace": "出生地点（选填）",
+    "submit": "开始推演",
+    "timeUnknown": "未知",
+    "hour": "时",
+    "shiChen": "时辰"
+  },
+  "results": {
+    "title": "命理推演",
+    "overview": "命格总览",
+    "aiAnalysis": "深度解析",
+    "trends": "运势趋势",
+    "recommendations": "开运建议",
+    "personality": "性格分析",
+    "wealth": "财运",
+    "love": "感情姻缘",
+    "health": "健康",
+    "career": "事业",
+    "yearly": "流年走势",
+    "favorable": "宜",
+    "unfavorable": "忌",
+    "luckyColors": "幸运颜色",
+    "luckyNumbers": "幸运数字",
+    "luckyDirections": "吉利方位",
+    "dayMaster": "日主",
+    "fiveElements": "五行属性",
+    "chartType": "命格类型",
+    "favorableElements": "喜用神",
+    "export": "导出命盘",
+    "newReading": "重新推演",
+    "share": "分享",
+    "analysisNotAvailable": "此部分暂无分析。",
+    "loadingChart": "加载图表...",
+    "yang": "阳",
+    "yin": "阴",
+    "polarity": "极性",
+    "zodiac": "生肖",
+    "fourPillars": "四柱"
+  },
+  "history": {
+    "title": "历史推演",
+    "empty": "尚无推演记录。",
+    "status_processing": "推演中",
+    "status_completed": "已完成",
+    "status_failed": "推演失败",
+    "viewReading": "查看详情",
+    "deleteReading": "删除",
+    "readingCount": "{count} 条记录"
+  },
+  "pricing": {
+    "title": "古币充值",
+    "free": {
+      "name": "免费",
+      "price": "免费",
+      "description": "新用户赠送5枚古币"
+    },
+    "premium": {
+      "name": "高级会员",
+      "price": "¥68",
+      "period": "即将上线",
+      "description": "命师解惑消耗古币"
+    },
+    "sdkNotLoaded": "支付SDK未加载，请刷新后重试",
+    "payUnavailable": "支付服务暂不可用",
+    "networkError": "网络错误，请重试"
+  },
+  "footer": {
+    "copyright": "推背图。古法今用，数理天成。",
+    "privacy": "隐私政策",
+    "terms": "服务条款",
+    "contact": "联系我们"
+  },
+  "errors": {
+    "invalidInput": "输入无效",
+    "emailRegistered": "邮箱已被注册",
+    "internalServer": "服务器内部错误",
+    "notFound": "未找到"
+  },
+  "seo": {
+    "homeTitle": "推背图 — 在线八字命理 | 周易占卜 | 紫微斗数",
+    "homeDescription": "以东方玄学智慧探索你的命运。",
+    "baziTitle": "八字排盘 — 四柱推命在线测算",
+    "baziDescription": "在线八字排盘，深度命理解读。"
+  },
+  "ad": {
+    "motto": "天机不可泄漏，命理自有归途",
+    "contact": "广告位：contact@tuibeitubegin.com · 广告图尺寸 970x90（桌面）/ 320x50（移动）"
+  },
+  "zhouyi": {
+    "prelude1": "择一静处 · 平心静气 · 默念所问",
+    "prelude2": "天地不言，以卦象示之。心诚则灵，意专则明。",
+    "writeQuestion": "将你所问之事，凝为一问，写于下方",
+    "enterDivination": "进入起卦",
+    "sincereQuestion": "诚心问卦",
+    "questionPlaceholder": "心中所问何事？",
+    "startCasting": "开始摇卦",
+    "yang": "阳",
+    "yin": "阴",
+    "yangExtreme": {
+      "en": " — Yang at its peak, about to become Yin",
+      "zh": "（阳极将变阴）",
+      "ja": "（陽極まって陰に変わろうとす）"
+    },
+    "yinExtreme": {
+      "en": " — Yin at its peak, about to become Yang",
+      "zh": "（阴极将变阳）",
+      "ja": "（陰極まって陽に変わろうとす）"
+    },
+    "casting": "摇卦中...",
+    "hexagramComplete": "六爻已成",
+    "hexagramFormed": "卦象已成",
+    "revealReading": "解卦",
+    "revealing": "解卦中...",
+    "throwLabel": "第",
+    "lineYang": "⚊ 少阳",
+    "lineYin": "⚋ 少阴",
+    "lineMovingYang": "○ 老阳",
+    "lineMovingYin": "× 老阴"
+  }
+}

@@ -1,0 +1,296 @@
+{
+  "site": {
+    "title": "TuiBeiTu",
+    "subtitle": "Observe the Dao, divine destinies, reveal all phenomena.",
+    "description": "Ancient Chinese metaphysics for the modern seeker. Bazi, I Ching, and the wisdom of the East."
+  },
+  "nav": {
+    "home": "Home",
+    "history": "History",
+    "pricing": "Recharge",
+    "about": "About",
+    "signin": "Sign In",
+    "signup": "Sign Up",
+    "signout": "Sign Out",
+    "account": "Account",
+    "subscription": "Subscription",
+    "changeAvatar": "Change Avatar"
+  },
+  "hero": {
+    "title": "TuiBeiTu",
+    "subtitle": "Observe the Dao, divine destinies, reveal all phenomena.",
+    "cta_primary": "Begin Reading",
+    "cta_secondary": "Explore Schools"
+  },
+  "schools": {
+    "title": "Schools of Divination",
+    "description": "Choose from the ancient arts of Chinese metaphysics.",
+    "bazi": {
+      "name": "Ba Zi",
+      "description": "Four Pillars of Destiny"
+    },
+    "ziwei": {
+      "name": "Zi Wei Dou Shu",
+      "description": "Purple Star Astrology"
+    },
+    "liuyao": {
+      "name": "Liu Yao",
+      "description": "Six Lines Divination"
+    },
+    "meihua": {
+      "name": "Plum Blossom Numerology",
+      "description": "Intuitive divination using numbers and phenomena"
+    },
+    "qimen": {
+      "name": "Qi Men Dun Jia",
+      "description": "Mystical Doors"
+    },
+    "zhouyi": {
+      "name": "I Ching",
+      "description": "The Book of Changes"
+    },
+    "tarot": {
+      "name": "Tarot",
+      "description": "78 cards of symbolic wisdom"
+    },
+    "name": {
+      "name": "Name Numerology",
+      "description": "Discover hidden energy in your name"
+    },
+    "phone": {
+      "name": "Phone Number Numerology",
+      "description": "Decode your phone number's pattern"
+    },
+    "daily": {
+      "name": "Daily Fortune",
+      "description": "Daily energy reading"
+    },
+    "yearly": {
+      "name": "Yearly Analysis",
+      "description": "Annual star influences"
+    },
+    "romance": {
+      "name": "Romance Analysis",
+      "description": "Ba Zi compatibility"
+    },
+    "wealth": {
+      "name": "Wealth Analysis",
+      "description": "Wealth potential through eight characters"
+    },
+    "career": {
+      "name": "Career Analysis",
+      "description": "Optimal career path"
+    },
+    "enterBazi": "Enter Birth Chart",
+    "enterDivination": "Begin Divination"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Try Again",
+    "back": "Back",
+    "freeReading": "Free",
+    "premium": "Premium",
+    "language": "Language",
+    "returnHome": "Return Home",
+    "cosmicError": "The cosmic energies are temporarily misaligned.",
+    "pageVoid": "This page has returned to the void."
+  },
+  "form": {
+    "year": "Year",
+    "month": "Month",
+    "day": "Day",
+    "yourQuestion": "Your Question",
+    "questionPlaceholder": "What would you like to ask the oracle?",
+    "fullName": "Full Name",
+    "namePlaceholder": "Enter your full name",
+    "phoneNumber": "Phone Number",
+    "phonePlaceholder": "+86 13800000000",
+    "noInputNeeded": "No additional input needed. Generate your reading now.",
+    "enterQuestion": "Please enter your question",
+    "enterName": "Please enter your name",
+    "enterPhone": "Please enter your phone number",
+    "createFailed": "Failed to create reading",
+    "networkError": "Network error. Please try again."
+  },
+  "auth": {
+    "signinTitle": "Sign In to TuiBeiTu",
+    "signupTitle": "Create Your Account",
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "signinButton": "Sign In",
+    "signupButton": "Create Account",
+    "googleSignIn": "Continue with Google",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "signupLink": "Sign Up",
+    "signinLink": "Sign In",
+    "orContinue": "or continue with",
+    "invalidCredentials": "Invalid email or password",
+    "registrationFailed": "Registration failed",
+    "signinAfterSignupFailed": "Account created but sign in failed. Please try signing in.",
+    "genericError": "Something went wrong. Please try again.",
+    "emailRegistered": "Email already registered",
+    "sendLink": "Send Link",
+    "emailHint": "We'll send you a magic link to sign in instantly"
+  },
+  "generating": {
+    "title": "Consulting the Heavens...",
+    "failed": "Failed to generate reading",
+    "noReadingId": "No reading specified. Please start from a reading form.",
+    "messages": [
+      "Aligning with celestial energies...",
+      "Calculating the four pillars...",
+      "Mapping the heavenly stems...",
+      "Tracing the earthly branches...",
+      "Decoding the ten gods...",
+      "Revealing your destiny chart..."
+    ],
+    "lineTop": "Top",
+    "lineFirst": "1st",
+    "baziStep0": "Unfurling scroll...",
+    "baziStep1": "Setting Year Pillar...",
+    "baziStep2": "Setting Month Pillar...",
+    "baziStep3": "Setting Day Pillar...",
+    "baziStep4": "Setting Hour Pillar...",
+    "baziStep5": "Chart revealed",
+    "zhouyiStep0": "First line set",
+    "zhouyiStep1": "Second line appears",
+    "zhouyiStep2": "Third line forms",
+    "zhouyiStep3": "Fourth line in place",
+    "zhouyiStep4": "Fifth line positioned",
+    "zhouyiStep5": "Top line complete",
+    "zhouyiStep6": "Hexagram formed",
+    "pillarYear": "Year Pillar",
+    "pillarMonth": "Month Pillar",
+    "pillarDay": "Day Pillar",
+    "pillarHour": "Hour Pillar"
+  },
+  "bazi": {
+    "title": "Ba Zi",
+    "description": "Enter your birth information.",
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "birthDate": "Birth Date",
+    "birthTime": "Birth Time",
+    "birthPlace": "Birth Place (optional)",
+    "submit": "Begin Reading",
+    "timeUnknown": "Unknown",
+    "hour": "Hour",
+    "shiChen": "Shichen (2-hour period)"
+  },
+  "results": {
+    "title": "Destiny Reading",
+    "overview": "Chart Overview",
+    "aiAnalysis": "In-Depth Analysis",
+    "trends": "Fortune Trends",
+    "recommendations": "Recommendations",
+    "personality": "Personality",
+    "wealth": "Wealth",
+    "love": "Love & Relationships",
+    "health": "Health",
+    "career": "Career",
+    "yearly": "Yearly Forecast",
+    "favorable": "Favorable",
+    "unfavorable": "Unfavorable",
+    "luckyColors": "Lucky Colors",
+    "luckyNumbers": "Lucky Numbers",
+    "luckyDirections": "Favorable Directions",
+    "dayMaster": "Day Master",
+    "fiveElements": "Five Elements",
+    "chartType": "Chart Type",
+    "favorableElements": "Favorable Elements",
+    "export": "Export Chart",
+    "newReading": "New Reading",
+    "share": "Share",
+    "analysisNotAvailable": "Analysis not available for this section.",
+    "loadingChart": "Loading chart...",
+    "yang": "Yang",
+    "yin": "Yin",
+    "polarity": "Polarity",
+    "zodiac": "Zodiac",
+    "fourPillars": "Four Pillars"
+  },
+  "history": {
+    "title": "Reading History",
+    "empty": "No readings yet. Begin your first divination.",
+    "status_processing": "Processing",
+    "status_completed": "Completed",
+    "status_failed": "Failed",
+    "viewReading": "View Reading",
+    "deleteReading": "Delete",
+    "readingCount": "{count} readings"
+  },
+  "pricing": {
+    "title": "Ancient Coins",
+    "free": {
+      "name": "Free",
+      "price": "Free",
+      "description": "New users get 5 free coins"
+    },
+    "premium": {
+      "name": "Premium",
+      "price": ".99",
+      "period": "Coming Soon",
+      "description": "Chat costs 1 coin per question"
+    },
+    "sdkNotLoaded": "Payment service not loaded. Please refresh.",
+    "payUnavailable": "Payment service unavailable.",
+    "networkError": "Network error. Please try again."
+  },
+  "footer": {
+    "copyright": "TuiBeiTu. Ancient wisdom, digital precision.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "contact": "Contact"
+  },
+  "errors": {
+    "invalidInput": "Invalid input",
+    "emailRegistered": "Email already registered",
+    "internalServer": "Internal server error",
+    "notFound": "Not found"
+  },
+  "seo": {
+    "homeTitle": "TuiBeiTu — Chinese Astrology & Fortune Telling Online | Ba Zi, I Ching, Zi Wei",
+    "homeDescription": "Discover your destiny through ancient Chinese metaphysics.",
+    "baziTitle": "Ba Zi Calculator — Four Pillars of Destiny | Free Online Reading",
+    "baziDescription": "Calculate your Ba Zi birth chart online. Discover your day master, five elements, and life path with in-depth interpretation."
+  },
+  "ad": {
+    "motto": "Heaven's secrets cannot be revealed, destiny finds its own path",
+    "contact": "Ad space: contact@tuibeitubegin.com · Size 970x90 (desktop) / 320x50 (mobile)"
+  },
+  "zhouyi": {
+    "prelude1": "Find a quiet place · Calm your mind · Hold your question",
+    "prelude2": "Heaven and Earth speak through the hexagrams. Sincerity brings clarity.",
+    "writeQuestion": "Condense your inquiry into one question below",
+    "enterDivination": "Enter Divination",
+    "sincereQuestion": "Ask with Sincerity",
+    "questionPlaceholder": "What weighs on your heart?",
+    "startCasting": "Begin Casting",
+    "yang": "Yang",
+    "yin": "Yin",
+    "yangExtreme": {
+      "en": " — Yang at its peak, about to become Yin",
+      "zh": "（阳极将变阴）",
+      "ja": "（陽極まって陰に変わろうとす）"
+    },
+    "yinExtreme": {
+      "en": " — Yin at its peak, about to become Yang",
+      "zh": "（阴极将变阳）",
+      "ja": "（陰極まって陽に変わろうとす）"
+    },
+    "casting": "Casting...",
+    "hexagramComplete": "Six Lines Complete",
+    "hexagramFormed": "Hexagram Formed",
+    "revealReading": "Reveal",
+    "revealing": "Decoding...",
+    "throwLabel": "Throw",
+    "lineYang": "⚊ Stable Yang",
+    "lineYin": "⚋ Stable Yin",
+    "lineMovingYang": "○ Changing Yang",
+    "lineMovingYin": "× Changing Yin"
+  }
+}

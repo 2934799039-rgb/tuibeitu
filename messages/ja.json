@@ -1,0 +1,296 @@
+{
+  "site": {
+    "title": "推背図",
+    "subtitle": "天道を観、人運を測り、万象を演ず。",
+    "description": "東洋玄学のデジタル継承。八字、易経、古の智慧を今に。"
+  },
+  "nav": {
+    "home": "ホーム",
+    "history": "履歴",
+    "pricing": "古幣",
+    "about": "概要",
+    "signin": "ログイン",
+    "signup": "登録",
+    "signout": "ログアウト",
+    "account": "アカウント",
+    "subscription": "サブスクリプション",
+    "changeAvatar": "アバター変更"
+  },
+  "hero": {
+    "title": "推背図",
+    "subtitle": "天道を観、人運を測り、万象を演ず。",
+    "cta_primary": "推演を始める",
+    "cta_secondary": "流派を見る"
+  },
+  "schools": {
+    "title": "運命学の流派",
+    "description": "古代東洋の運命学から。",
+    "bazi": {
+      "name": "八字",
+      "description": "四柱推命"
+    },
+    "ziwei": {
+      "name": "紫微斗数",
+      "description": "帝王の術"
+    },
+    "liuyao": {
+      "name": "六爻占術",
+      "description": "硬貨を投じて卦を立てる"
+    },
+    "meihua": {
+      "name": "梅花易数",
+      "description": "数字や日付から卦を生成"
+    },
+    "qimen": {
+      "name": "奇門遁甲",
+      "description": "帝王の秘術"
+    },
+    "zhouyi": {
+      "name": "易経",
+      "description": "六十四卦の智慧"
+    },
+    "tarot": {
+      "name": "タロット",
+      "description": "78枚のカード"
+    },
+    "name": {
+      "name": "姓名判断",
+      "description": "名前に秘められたエネルギー"
+    },
+    "phone": {
+      "name": "電話番号占術",
+      "description": "数字が放つ波動"
+    },
+    "daily": {
+      "name": "デイリー運勢",
+      "description": "日々の天体配置"
+    },
+    "yearly": {
+      "name": "年間運勢分析",
+      "description": "太歳と年星の影響"
+    },
+    "romance": {
+      "name": "恋愛相性分析",
+      "description": "八字の相性"
+    },
+    "wealth": {
+      "name": "財運分析",
+      "description": "八字の財星"
+    },
+    "career": {
+      "name": "キャリア分析",
+      "description": "五行の特性"
+    },
+    "enterBazi": "八字に入る",
+    "enterDivination": "占いを始める"
+  },
+  "common": {
+    "loading": "読み込み中...",
+    "error": "エラーが発生しました",
+    "retry": "再試行",
+    "back": "戻る",
+    "freeReading": "無料",
+    "premium": "プレミアム",
+    "language": "言語",
+    "returnHome": "ホームに戻る",
+    "cosmicError": "天地の気が一時的に乱れています。",
+    "pageVoid": "このページは虚空に還りました。"
+  },
+  "form": {
+    "year": "年",
+    "month": "月",
+    "day": "日",
+    "yourQuestion": "質問",
+    "questionPlaceholder": "神託に何を尋ねますか？",
+    "fullName": "氏名",
+    "namePlaceholder": "氏名を入力してください",
+    "phoneNumber": "電話番号",
+    "phonePlaceholder": "+81 090-0000-0000",
+    "noInputNeeded": "入力不要です。今すぐ運勢を生成します。",
+    "enterQuestion": "質問を入力してください",
+    "enterName": "氏名を入力してください",
+    "enterPhone": "電話番号を入力してください",
+    "createFailed": "推演の作成に失敗しました",
+    "networkError": "ネットワークエラー。再試行してください。"
+  },
+  "auth": {
+    "signinTitle": "推背図にログイン",
+    "signupTitle": "アカウントを作成",
+    "email": "メールアドレス",
+    "password": "パスワード",
+    "name": "名前",
+    "signinButton": "ログイン",
+    "signupButton": "アカウント作成",
+    "googleSignIn": "Googleで続ける",
+    "noAccount": "アカウントをお持ちでない方は",
+    "haveAccount": "すでにアカウントをお持ちの方は",
+    "signupLink": "登録",
+    "signinLink": "ログイン",
+    "orContinue": "または",
+    "invalidCredentials": "メールアドレスまたはパスワードが無効です",
+    "registrationFailed": "登録に失敗しました",
+    "signinAfterSignupFailed": "アカウントは作成されましたがログインに失敗しました。",
+    "genericError": "問題が発生しました。再試行してください。",
+    "emailRegistered": "このメールアドレスは既に登録されています",
+    "sendLink": "リンク送信",
+    "emailHint": "ログイン用のマジックリンクをメールでお送りします"
+  },
+  "generating": {
+    "title": "天命を読み解いています...",
+    "failed": "推演に失敗しました",
+    "noReadingId": "推演が指定されていません。",
+    "messages": [
+      "天の気と交感しています...",
+      "四柱を算定しています...",
+      "天干地支を配置しています...",
+      "格局を判定しています...",
+      "十神を定位しています...",
+      "命式が顕現しています..."
+    ],
+    "lineTop": "上",
+    "lineFirst": "初",
+    "baziStep0": "卷物を開く...",
+    "baziStep1": "年柱を定める...",
+    "baziStep2": "月柱を定める...",
+    "baziStep3": "日柱を定める...",
+    "baziStep4": "時柱を定める...",
+    "baziStep5": "命盤出現",
+    "zhouyiStep0": "初爻定まる",
+    "zhouyiStep1": "二爻現れる",
+    "zhouyiStep2": "三爻形作る",
+    "zhouyiStep3": "四爻位に着く",
+    "zhouyiStep4": "五爻位に帰す",
+    "zhouyiStep5": "上爻円満",
+    "zhouyiStep6": "卦象成る",
+    "pillarYear": "年柱",
+    "pillarMonth": "月柱",
+    "pillarDay": "日柱",
+    "pillarHour": "時柱"
+  },
+  "bazi": {
+    "title": "八字",
+    "description": "生年月日時を入力してください。",
+    "gender": "性別",
+    "male": "男性",
+    "female": "女性",
+    "birthDate": "生年月日",
+    "birthTime": "出生時間",
+    "birthPlace": "出生地（任意）",
+    "submit": "推演を始める",
+    "timeUnknown": "不明",
+    "hour": "時",
+    "shiChen": "時辰"
+  },
+  "results": {
+    "title": "運命鑑定",
+    "overview": "命式総覧",
+    "aiAnalysis": "深度解析",
+    "trends": "運勢トレンド",
+    "recommendations": "開運アドバイス",
+    "personality": "性格",
+    "wealth": "金運",
+    "love": "恋愛",
+    "health": "健康",
+    "career": "キャリア",
+    "yearly": "年間予測",
+    "favorable": "吉",
+    "unfavorable": "凶",
+    "luckyColors": "ラッキーカラー",
+    "luckyNumbers": "ラッキーナンバー",
+    "luckyDirections": "吉方位",
+    "dayMaster": "日主",
+    "fiveElements": "五行",
+    "chartType": "命格タイプ",
+    "favorableElements": "喜用神",
+    "export": "命式を保存",
+    "newReading": "新しく推演",
+    "share": "共有",
+    "analysisNotAvailable": "このセクションの分析は利用できません。",
+    "loadingChart": "チャートを読み込み中...",
+    "yang": "陽",
+    "yin": "陰",
+    "polarity": "極性",
+    "zodiac": "干支",
+    "fourPillars": "四柱"
+  },
+  "history": {
+    "title": "鑑定履歴",
+    "empty": "まだ鑑定履歴がありません。",
+    "status_processing": "処理中",
+    "status_completed": "完了",
+    "status_failed": "失敗",
+    "viewReading": "詳細を見る",
+    "deleteReading": "削除",
+    "readingCount": "{count} 件の記録"
+  },
+  "pricing": {
+    "title": "古幣チャージ",
+    "free": {
+      "name": "無料",
+      "price": "無料",
+      "description": "新規ユーザーに5枚の古幣をプレゼント"
+    },
+    "premium": {
+      "name": "プレミアム",
+      "price": "¥980",
+      "period": "近日公開",
+      "description": "チャットは1質問につき1古幣"
+    },
+    "sdkNotLoaded": "決済サービスが読み込まれていません。更新してください。",
+    "payUnavailable": "決済サービスが利用できません。",
+    "networkError": "ネットワークエラー。再試行してください。"
+  },
+  "footer": {
+    "copyright": "推背図。古の智慧、デジタルの精髄。",
+    "privacy": "プライバシーポリシー",
+    "terms": "利用規約",
+    "contact": "お問い合わせ"
+  },
+  "errors": {
+    "invalidInput": "入力が無効です",
+    "emailRegistered": "メールアドレスは既に登録されています",
+    "internalServer": "サーバー内部エラー",
+    "notFound": "見つかりません"
+  },
+  "seo": {
+    "homeTitle": "推背図 — 中国占星術 | 八字 | 易経 | 紫微斗数",
+    "homeDescription": "古代中国の運命学であなたの運命を探ります。",
+    "baziTitle": "八字計算 — 四柱推命オンライン鑑定",
+    "baziDescription": "オンラインで八字を計算。詳細な運命解説。"
+  },
+  "ad": {
+    "motto": "天機は漏らすべからず、命理は自ずと帰途あり",
+    "contact": "広告枠：contact@tuibeitubegin.com · サイズ 970x90（PC）/ 320x50（モバイル）"
+  },
+  "zhouyi": {
+    "prelude1": "静かな場所で · 心を落ち着けて · 問いを胸に",
+    "prelude2": "天地は言葉を発せず、卦象をもって示す。誠あれば通じ、意専なれば明らか。",
+    "writeQuestion": "問いを一言に凝縮して、下に記してください",
+    "enterDivination": "起卦に入る",
+    "sincereQuestion": "誠心問卦",
+    "questionPlaceholder": "心に問うことは？",
+    "startCasting": "摇卦開始",
+    "yang": "陽",
+    "yin": "陰",
+    "yangExtreme": {
+      "en": " — Yang at its peak, about to become Yin",
+      "zh": "（阳极将变阴）",
+      "ja": "（陽極まって陰に変わろうとす）"
+    },
+    "yinExtreme": {
+      "en": " — Yin at its peak, about to become Yang",
+      "zh": "（阴极将变阳）",
+      "ja": "（陰極まって陽に変わろうとす）"
+    },
+    "casting": "摇卦中...",
+    "hexagramComplete": "六爻完成",
+    "hexagramFormed": "卦象成立",
+    "revealReading": "解卦",
+    "revealing": "解卦中...",
+    "throwLabel": "第",
+    "lineYang": "⚊ 少陽",
+    "lineYin": "⚋ 少陰",
+    "lineMovingYang": "○ 老陽",
+    "lineMovingYin": "× 老陰"
+  }
+}
