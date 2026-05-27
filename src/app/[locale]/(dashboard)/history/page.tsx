@@ -2,7 +2,6 @@ import { auth } from "@/lib/auth";
 import { redirect } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
-import type { UserReading } from "@prisma/client";
 import { Link } from "@/i18n/navigation";
 import { LogoMark } from "@/features/ui/components/Logo";
 import { SchoolIcon } from "@/features/ui/components/SchoolIcon";
@@ -55,7 +54,7 @@ export default async function HistoryPage({ params }: Props) {
         </div>
       ) : (
         <div className="space-y-3">
-          {readings.map((reading: UserReading) => {
+          {readings.map((reading) => {
             const schoolId = ENUM_TO_SCHOOL[reading.schoolType] || reading.schoolType.toLowerCase();
             const schoolIconId = schools.find((s) => s.id === schoolId)?.id;
 
