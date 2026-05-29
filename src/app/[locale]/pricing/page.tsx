@@ -36,7 +36,7 @@ export default function PricingPage() {
   const searchParams = useSearchParams();
   const [customAmount, setCustomAmount] = useState("");
   const [loading, setLoading] = useState<string | null>(null);
-  const { _ } = T(locale) as any;
+  const _ = T(locale);
   const success = searchParams.get("success");
 
   async function checkout(coins: number) {
