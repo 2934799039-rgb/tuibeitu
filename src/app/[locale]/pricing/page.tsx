@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations, useLocale } from "next-intl";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { LogoMark } from "@/features/ui/components/Logo";
 import { Link } from "@/i18n/navigation";
@@ -62,7 +62,32 @@ export default function PricingPage() {
   }
 
   const [payMsg, setPayMsg] = useState("");
+  const [capturing, setCapturing] = useState(false);
   const customCoins = customAmount ? Math.floor(Number(customAmount) / RATE) : 0;
+
+  // Capture PayPal order on return
+  useEffect(() => {
+    const token = searchParams.get("token");
+    if (success === "true" && token && !capturing) {
+      setCapturing(true);
+      fetch("/api/capture-paypal", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ orderId: token }),
+      }).then(r => r.json()).then(d => {
+        if (d.success) {
+          setPayMsg(d.credits
+            ? `充值成功！获得 ${d.coins} 古币，当前余额 ${d.credits} 古币`
+            : _.success);
+          window.dispatchEvent(new Event("credits-updated"));
+        } else {
+          setPayMsg(d.error || "支付未完成，请稍后查看");
+        }
+      }).catch(() => {
+        setPayMsg("验证失败，请刷新重试");
+      });
+    }
+  }, [searchParams]);
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4 py-24">
@@ -73,13 +98,23 @@ export default function PricingPage() {
         </h1>
         <p className="text-sm text-mystic-400 mb-8 tracking-wider">{_.subtitle}</p>
 
-        {success === "true" && (
+        {(capturing || (success === "true" && payMsg)) && (
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             className="mb-6 p-4 rounded-sm border border-gold-500/30 bg-gold-950/20"
           >
-            <p className="text-sm text-gold-400">{_.success}</p>
+            {capturing && !payMsg ? (
+              <p className="text-sm text-gold-400 flex items-center justify-center gap-2">
+                <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" opacity="0.2" />
+                  <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                </svg>
+                {locale === "zh" ? "验证支付中..." : locale === "ja" ? "支払い確認中..." : "Verifying payment..."}
+              </p>
+            ) : (
+              <p className="text-sm text-gold-400">{payMsg}</p>
+            )}
           </motion.div>
         )}
 

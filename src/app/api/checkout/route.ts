@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import Stripe from "stripe";
 
 const PRESET: Record<string, { coins: number; price: number }> = {
   "20": { coins: 20, price: 1.99 },
@@ -8,6 +7,23 @@ const PRESET: Record<string, { coins: number; price: number }> = {
   "250": { coins: 250, price: 14.99 },
 };
 const RATE = 1.99 / 20;
+
+const PAYPAL_BASE = process.env.PAYPAL_MODE === "live"
+  ? "https://api-m.paypal.com"
+  : "https://api-m.sandbox.paypal.com";
+
+async function getPayPalToken(): Promise<string> {
+  const res = await fetch(`${PAYPAL_BASE}/v1/oauth2/token`, {
+    method: "POST",
+    headers: {
+      "Authorization": "Basic " + Buffer.from(`${process.env.PAYPAL_CLIENT_ID}:${process.env.PAYPAL_CLIENT_SECRET}`).toString("base64"),
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: "grant_type=client_credentials",
+  });
+  const data = await res.json();
+  return data.access_token;
+}
 
 export async function POST(request: Request) {
   try {
@@ -19,35 +35,44 @@ export async function POST(request: Request) {
 
     const pkg = PRESET[String(coins)];
     const price = pkg ? pkg.price : Math.round(coins * RATE * 100) / 100;
-    const amountCents = Math.round(price * 100);
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+    const token = await getPayPalToken();
 
-    const checkoutSession = await stripe.checkout.sessions.create({
-      mode: "payment",
-      currency: "usd",
-      line_items: [{
-        price_data: {
-          currency: "usd",
-          product_data: {
-            name: `${coins} 古币`,
-            description: `TuiBeiTu ${coins} Ancient Coins`,
-          },
-          unit_amount: amountCents,
+    const orderRes = await fetch(`${PAYPAL_BASE}/v2/checkout/orders`, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        intent: "CAPTURE",
+        purchase_units: [{
+          amount: { currency_code: "USD", value: price.toFixed(2) },
+          description: `${coins} 古币 — TuiBeiTu`,
+          custom_id: JSON.stringify({ userId, coins }),
+        }],
+        application_context: {
+          return_url: `${baseUrl}/${lang}/pricing?success=true`,
+          cancel_url: `${baseUrl}/${lang}/pricing`,
+          brand_name: "TuiBeiTu",
         },
-        quantity: 1,
-      }],
-      metadata: { userId, coins: String(coins) },
-      success_url: `${baseUrl}/${lang}/pricing?success=true`,
-      cancel_url: `${baseUrl}/${lang}/pricing`,
+      }),
     });
 
-    if (!checkoutSession.url) {
-      return NextResponse.json({ error: "Failed to create checkout" }, { status: 502 });
+    const order = await orderRes.json();
+
+    if (order.status === "CREATED") {
+      const approveLink = order.links?.find((l: any) => l.rel === "payer-action")?.href
+        || order.links?.find((l: any) => l.rel === "approve")?.href;
+
+      if (approveLink) {
+        return NextResponse.json({ url: approveLink });
+      }
     }
 
-    return NextResponse.json({ url: checkoutSession.url });
+    console.error("PayPal order error:", JSON.stringify(order));
+    return NextResponse.json({ error: "Payment service unavailable" }, { status: 502 });
   } catch (error: any) {
     console.error("Checkout error:", error.message);
     return NextResponse.json({ error: "Checkout failed" }, { status: 500 });
