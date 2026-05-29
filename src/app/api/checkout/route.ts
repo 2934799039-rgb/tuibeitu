@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { getAccessToken } from "@/lib/airwallex";
+import Stripe from "stripe";
 
 const PRESET: Record<string, { coins: number; price: number }> = {
   "20": { coins: 20, price: 1.99 },
@@ -8,14 +8,6 @@ const PRESET: Record<string, { coins: number; price: number }> = {
   "250": { coins: 250, price: 14.99 },
 };
 const RATE = 1.99 / 20;
-
-const BASE = process.env.AIRWALLEX_ENV === "prod"
-  ? "https://api.airwallex.com"
-  : "https://api-demo.airwallex.com";
-
-const CHECKOUT_BASE = process.env.AIRWALLEX_ENV === "prod"
-  ? "https://checkout.airwallex.com"
-  : "https://demo.checkout.airwallex.com";
 
 export async function POST(request: Request) {
   try {
@@ -28,41 +20,34 @@ export async function POST(request: Request) {
     const pkg = PRESET[String(coins)];
     const price = pkg ? pkg.price : Math.round(coins * RATE * 100) / 100;
     const amountCents = Math.round(price * 100);
-
-    const token = await getAccessToken();
-    const orderId = `coins_${coins}_${Date.now()}`;
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
-    // Create payment intent with return_url to get client_secret
-    const res = await fetch(`${BASE}/api/v1/pa/payment_intents/create`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        request_id: orderId,
-        amount: amountCents,
-        currency: "USD",
-        merchant_order_id: orderId,
-        return_url: `${baseUrl}/${lang}/pricing?success=true`,
-        metadata: { userId, coins: String(coins) },
-      }),
-    });
-    const intent = await res.json();
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
-    if (!intent.id || !intent.client_secret) {
-      console.error("Airwallex error:", JSON.stringify(intent));
-      return NextResponse.json({ error: "Payment service unavailable" }, { status: 502 });
+    const checkoutSession = await stripe.checkout.sessions.create({
+      mode: "payment",
+      currency: "usd",
+      line_items: [{
+        price_data: {
+          currency: "usd",
+          product_data: {
+            name: `${coins} 古币`,
+            description: `TuiBeiTu ${coins} Ancient Coins`,
+          },
+          unit_amount: amountCents,
+        },
+        quantity: 1,
+      }],
+      metadata: { userId, coins: String(coins) },
+      success_url: `${baseUrl}/${lang}/pricing?success=true`,
+      cancel_url: `${baseUrl}/${lang}/pricing`,
+    });
+
+    if (!checkoutSession.url) {
+      return NextResponse.json({ error: "Failed to create checkout" }, { status: 502 });
     }
 
-    const env = process.env.AIRWALLEX_ENV === "prod" ? "prod" : "demo";
-
-    return NextResponse.json({
-      env,
-      intentId: intent.id,
-      clientSecret: intent.client_secret,
-    });
+    return NextResponse.json({ url: checkoutSession.url });
   } catch (error: any) {
     console.error("Checkout error:", error.message);
     return NextResponse.json({ error: "Checkout failed" }, { status: 500 });

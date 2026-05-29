@@ -1,12 +1,11 @@
 "use client";
 
 import { useTranslations, useLocale } from "next-intl";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { LogoMark } from "@/features/ui/components/Logo";
 import { Link } from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
-import Script from "next/script";
 
 const RATE = 1.99 / 20;
 
@@ -16,15 +15,12 @@ function T(locale: string) {
     coin: t("古币", "Coins", "古幣"),
     chats: t("次命师解惑", "chats", "回の質問"),
     buy: t("购买", "Buy", "購入"),
-    success: (c: number, r: number) => t(`充值成功！获得 ${c} 古币，当前余额 ${r} 古币`, `Recharged! +${c} coins, balance: ${r}`, `チャージ完了！${c}古幣獲得、残高: ${r}`),
-    verifying: t("验证支付中...", "Verifying payment...", "支払い確認中..."),
-    pending: t("支付验证中，古币稍后到账", "Payment being verified, coins arriving soon", "支払い確認中、まもなく着金"),
-    fail: t("验证失败，请稍后再试", "Verification failed, please try again", "確認失敗、後でもう一度"),
-    subtitle: t("$1.99 = 20 古币 · 约 $0.50/问", "$1.99 = 20 coins · ~$0.50/question", "$1.99 = 20古幣 · 約$0.50/質問"),
+    success: t("支付成功！古币稍后到账，如未到账请稍等片刻。", "Payment successful! Coins will arrive shortly.", "支払い完了！まもなく着金します。"),
+    subtitle: t("$1.99 = 20 古币 · 约 2.5 元/问", "$1.99 = 20 coins · ~$0.50/question", "$1.99 = 20古幣 · 約2.5元/質問"),
     note: t('古币专用于"命师解惑"功能（5古币/问），推演命盘完全免费', 'Coins are for "Ask the Master" (5 coins/question). Chart readings are free.', '古幣は「命師に質問」専用（5古幣/質問）。命盤推演は無料。'),
     customTitle: t("自定义金额", "Custom Amount", "カスタム金額"),
     customPlaceholder: t("输入美元金额", "Enter USD amount", "USD金額を入力"),
-    approx: (c: number, p: number) => t(`≈ ${c} 古币 (约 $${p}/枚)`, `≈ ${c} coins (~$${p}/ea)`, `≈ ${c}古幣 (約$${p}/枚)`),
+    approx: (c: number) => t(`≈ ${c} 古币`, `≈ ${c} coins`, `≈ ${c}古幣`),
   };
 }
 
@@ -40,32 +36,8 @@ export default function PricingPage() {
   const searchParams = useSearchParams();
   const [customAmount, setCustomAmount] = useState("");
   const [loading, setLoading] = useState<string | null>(null);
-  const [verifying, setVerifying] = useState(false);
-  const [payMsg, setPayMsg] = useState("");
-  const _ = T(locale);
-
-  // Verify payment on return from Airwallex
-  useEffect(() => {
-    const success = searchParams.get("success");
-    const intentId = sessionStorage.getItem("awx_intent_id");
-    if (success === "true" && intentId) {
-      sessionStorage.removeItem("awx_intent_id");
-      setVerifying(true);
-      fetch("/api/verify-payment", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ intentId }),
-      }).then(r => r.json()).then(d => {
-        setVerifying(false);
-        if (d.success) {
-          setPayMsg(_.success(d.coins, d.credits));
-          window.dispatchEvent(new Event("credits-updated"));
-        } else {
-          setPayMsg(_.pending);
-        }
-      }).catch(() => { setVerifying(false); setPayMsg(_.fail); });
-    }
-  }, [searchParams]);
+  const { _ } = T(locale) as any;
+  const success = searchParams.get("success");
 
   async function checkout(coins: number) {
     if (loading) return;
@@ -77,26 +49,8 @@ export default function PricingPage() {
         body: JSON.stringify({ coins, locale }),
       });
       const data = await res.json();
-      if (data.intentId && data.clientSecret) {
-        sessionStorage.setItem("awx_intent_id", data.intentId);
-        const AW = (window as any).AirwallexComponentsSDK;
-        if (AW) {
-          const { payments } = await AW.init({
-            env: data.env || "demo",
-            enabledElements: ["payments"],
-          });
-          payments.redirectToCheckout({
-            env: data.env || "demo",
-            mode: "payment",
-            currency: "USD",
-            intent_id: data.intentId,
-            client_secret: data.clientSecret,
-            successUrl: `${window.location.origin}/${locale}/pricing?success=true`,
-          });
-        } else {
-          setPayMsg(t("pricing.sdkNotLoaded"));
-          setLoading(null);
-        }
+      if (data.url) {
+        window.location.href = data.url;
       } else {
         setPayMsg(data.error || t("pricing.payUnavailable"));
         setLoading(null);
@@ -107,12 +61,11 @@ export default function PricingPage() {
     }
   }
 
+  const [payMsg, setPayMsg] = useState("");
   const customCoins = customAmount ? Math.floor(Number(customAmount) / RATE) : 0;
 
   return (
-    <>
-      <Script src="https://static.airwallex.com/components/sdk/v1/index.js" strategy="lazyOnload" />
-      <div className="min-h-[80vh] flex items-center justify-center px-4 py-24">
+    <div className="min-h-[80vh] flex items-center justify-center px-4 py-24">
       <div className="max-w-2xl w-full text-center">
         <LogoMark size={48} className="text-gold-400 mx-auto mb-6" />
         <h1 className="text-3xl font-calligraphy gold-text mb-2 tracking-widest">
@@ -120,31 +73,26 @@ export default function PricingPage() {
         </h1>
         <p className="text-sm text-mystic-400 mb-8 tracking-wider">{_.subtitle}</p>
 
-        {(verifying || payMsg) && (
+        {success === "true" && (
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             className="mb-6 p-4 rounded-sm border border-gold-500/30 bg-gold-950/20"
           >
-            {verifying ? (
-              <p className="text-sm text-gold-400 flex items-center justify-center gap-2">
-                <span className="w-4 h-4 border-2 border-gold-400/30 border-t-gold-400 rounded-full animate-spin" />
-                {_.verifying}
-              </p>
-            ) : (
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ type: "spring", duration: 0.5 }}
-                className="text-sm text-gold-400"
-              >
-                {payMsg}
-              </motion.p>
-            )}
+            <p className="text-sm text-gold-400">{_.success}</p>
           </motion.div>
         )}
 
-        {/* Preset packages */}
+        {payMsg && !success && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="mb-6 p-4 rounded-sm border border-red-500/30 bg-red-950/10"
+          >
+            <p className="text-sm text-red-400">{payMsg}</p>
+          </motion.div>
+        )}
+
         <div className="flex flex-col sm:flex-row gap-6 mb-8 justify-center">
           {packages.map((pkg, i) => (
             <motion.div
@@ -152,8 +100,7 @@ export default function PricingPage() {
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
               onClick={() => checkout(pkg.coins)}
-              style={{ minHeight: 280 }}
-              className={`mystic-card rounded-sm flex-1 flex flex-col items-center justify-center cursor-pointer hover:border-gold-400 transition-all duration-300 ${
+              className={`mystic-card rounded-sm flex-1 flex flex-col items-center justify-center cursor-pointer hover:border-gold-400 transition-all duration-300 p-8 ${
                 pkg.popular ? "border border-gold-500/30" : ""
               }`}
             >
@@ -165,7 +112,7 @@ export default function PricingPage() {
                 {Math.floor(pkg.coins / 5)} {_.chats}
               </p>
               {loading === String(pkg.coins) ? (
-                <span className="text-xs text-gold-400">...</span>
+                <span className="text-xs text-gold-400 animate-pulse">···</span>
               ) : (
                 <span className="text-xs text-gold-400 font-semibold tracking-widest uppercase">{_.buy}</span>
               )}
@@ -175,7 +122,6 @@ export default function PricingPage() {
 
         <p className="text-xs text-mystic-500 mb-6 tracking-wider">{_.note}</p>
 
-        {/* Custom amount */}
         <div className="mystic-card rounded-sm p-6 max-w-sm mx-auto">
           <p className="text-xs text-mystic-400 tracking-wider mb-3">{_.customTitle}</p>
           <div className="flex gap-2 items-center">
@@ -191,9 +137,7 @@ export default function PricingPage() {
             />
           </div>
           {customCoins > 0 && (
-            <p className="text-xs text-gold-400 mt-3">
-              {_.approx(customCoins, Number((Number(customAmount) / customCoins).toFixed(2)))}
-            </p>
+            <p className="text-xs text-gold-400 mt-3">{_.approx(customCoins)}</p>
           )}
           {customCoins > 0 && (
             <button onClick={() => checkout(customCoins)} disabled={loading === String(customCoins)}
@@ -208,6 +152,5 @@ export default function PricingPage() {
         </Link>
       </div>
     </div>
-    </>
   );
 }

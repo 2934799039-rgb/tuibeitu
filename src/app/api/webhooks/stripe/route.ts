@@ -1,45 +1,38 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import crypto from "crypto";
-
-function verifySignature(payload: string, signature: string, secret: string): boolean {
-  const expected = crypto.createHmac("sha256", secret).update(payload).digest("hex");
-  return crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(signature));
-}
+import Stripe from "stripe";
 
 export async function POST(request: Request) {
+  const body = await request.text();
+  const signature = request.headers.get("stripe-signature") || "";
+
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+
+  let event: Stripe.Event;
   try {
-    const body = await request.text();
-    const signature = request.headers.get("x-airwallex-signature") || "";
-
-    // Verify webhook
-    const webhookSecret = process.env.AIRWALLEX_WEBHOOK_SECRET;
-    if (webhookSecret && signature) {
-      if (!verifySignature(body, signature, webhookSecret)) {
-        return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
-      }
-    }
-
-    const data = JSON.parse(body);
-
-    if (data.name === "payment_intent.succeeded" || data.event === "payment_intent.succeeded") {
-      const intent = data.data?.object || data.data || {};
-      const metadata = intent.metadata || {};
-      const userId = metadata.userId;
-      const coins = Number(metadata.coins || "0");
-
-      if (userId && userId !== "anonymous" && coins > 0) {
-        await prisma.user.update({
-          where: { id: userId },
-          data: { chatCredits: { increment: coins } },
-        });
-        console.log(`Added ${coins} credits to user ${userId}`);
-      }
-    }
-
-    return NextResponse.json({ received: true });
-  } catch (e) {
-    console.error("Webhook error:", e);
-    return NextResponse.json({ error: "Internal" }, { status: 500 });
+    event = stripe.webhooks.constructEvent(
+      body,
+      signature,
+      process.env.STRIPE_WEBHOOK_SECRET!
+    );
+  } catch (err: any) {
+    console.error("Webhook signature verification failed:", err.message);
+    return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
   }
+
+  if (event.type === "checkout.session.completed") {
+    const session = event.data.object as Stripe.Checkout.Session;
+    const userId = session.metadata?.userId;
+    const coins = Number(session.metadata?.coins || "0");
+
+    if (userId && userId !== "anonymous" && coins > 0) {
+      await prisma.user.update({
+        where: { id: userId },
+        data: { chatCredits: { increment: coins } },
+      });
+      console.log(`Stripe: Added ${coins} credits to user ${userId}`);
+    }
+  }
+
+  return NextResponse.json({ received: true });
 }
